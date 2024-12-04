@@ -46,10 +46,9 @@ distances = []
 
 with open('day1input.txt', 'r') as file:
     for line in file:
-        print(line.split())
-        # first_num, second_num = map(int, line.split())
-        # left_list.append(first_num)
-        # right_list.append(second_num)
+        first_num, second_num = map(int, line.split())
+        left_list.append(first_num)
+        right_list.append(second_num)
 
 left_list.sort()
 right_list.sort()

@@ -194,7 +194,8 @@ Flip the word search from the instructions back over to the word search side and
 
 with open('day4input.txt', 'r') as file:
     input = [list(line.strip()) for line in file]
-    DELTAS = [(dy, dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1) if (dy, dx) != (0, 0)]
+    # DELTAS = [(dy, dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1) if (dy, dx) != (0, 0)]
+    DELTAS = tuple((dy, dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1) if (dy, dx) != (0, 0))
     XMAS = 'XMAS'
     L = len(XMAS)
     H, W = len(input), len(input[0])
@@ -218,7 +219,8 @@ with open('day4input.txt', 'r') as file:
     # print(total)
 
     # Part 2
-    DIAGONAL_DELTAS = [(dy, dx) for dy in (-1, 1) for dx in (-1, 1)]
+    DIAGONAL_DELTAS = tuple((dy, dx) for dy in (-1, 1) for dx in (-1, 1))
+    # DIAGONAL_DELTAS = [(dy, dx) for dy in (-1, 1) for dx in (-1, 1)]
 
     def check_diagonal_letters(row, col):
         return input[row-1][col-1] != input[row+1][col+1]

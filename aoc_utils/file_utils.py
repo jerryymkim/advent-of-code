@@ -10,19 +10,26 @@ class Files:
         self.year = year
 
         day_str = 'day' + str(day).zfill(2)
-        # day_str = 'day' + str(day).zfill(2) + 'TEST'
 
         self.sample_input_file = day_str + 'sampleinput.txt'
         self.input_file = day_str + 'input.txt'
 
     def update_file_names(self, day, year):
-        # day_str = 'day' + str(day).zfill(2)
-        day_str = 'day' + str(day).zfill(2) + 'TEST'
+        day_str = 'day' + str(day).zfill(2)
 
         self.sample_input_file = day_str + 'sampleinput.txt'
         self.input_file = day_str + 'input.txt'
 
 f = Files()
+
+def _create_next_day_python_file():
+    """
+    Only premake the next day's .py file so it doesn't clutter up the repo with a bunch of empty files.
+    """
+    file_name = 'day' + str(f.day + 1).zfill(2) + '.py'
+
+    if not os.path.exists(file_name):
+        with open(file_name, 'w') as file: pass
 
 def clipboard_input_file_names():
     """
@@ -39,6 +46,7 @@ def create_input_files(day=current_day(), year=most_recent_year()):
     """
 
     if day != current_day() or year != most_recent_year(): f.update_file_names(day, year)
+    _create_next_day_python_file()
 
     if not os.path.exists(f.sample_input_file):
         with open(f.sample_input_file, 'w') as file: pass

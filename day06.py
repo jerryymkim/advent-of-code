@@ -1,6 +1,7 @@
 import os
 import pyperclip
 import requests
+import aoc_utils
 
 from aocd.get import current_day, most_recent_year
 from aocd import get_data
@@ -33,7 +34,7 @@ def create_input_files(year=most_recent_year(), day=current_day()):
 
 # -------------------------------------------------------------------------------------------------------------------------------------------- #
 
-with open(input_file, 'r') as f:
+with open(sample_input_file, 'r') as f:
     input_grid = [list(line.strip()) for line in f.readlines()]
 
 DIRECTIONS = {'^': (-1, 0), '<': (0, -1), '>': (0, 1), 'v': (1, 0)}
@@ -88,7 +89,9 @@ def move_guard(row, col, direction:str, part_two=False):
     elif next_step is None:
         # Count the last step before exiting the map
         if part_two: steps = 0
-        count += 1
+        if input_grid[row][col] == '.': 
+            input_grid[row][col] = 'X'
+            count += 1
         return None
     else:
         print('ERROR')
@@ -107,7 +110,8 @@ input_grid[guard_info['row']][guard_info['col']] = 'X' # Since I'm storing the g
 count += 1
 
 # Part 1
-# while move_guard(guard_info['row'], guard_info['col'], guard_info['direction']) is True: pass
+# while move_guard(guard_info['row'], guard_info['col'], guard_info['direction']) is True:
+#     aoc_utils.pprint_2d_list(lst=input_grid, animate=True, delay=0.1)
 # print(f'Count: {count}')
 
 # Part 2
@@ -130,4 +134,4 @@ for i, row in enumerate(input_grid):
         reset()
         iterations += 1
 
-print(f'Obstacle Amount: {obstacles_amount}')
+# print(f'Obstacle Amount: {obstacles_amount}')

@@ -1,9 +1,7 @@
 import os
 import pyperclip
 import requests
-import browser_cookie3
 
-from aocd.models import default_user, Puzzle, User
 from aocd.get import current_day, most_recent_year
 from aocd import get_data
 
